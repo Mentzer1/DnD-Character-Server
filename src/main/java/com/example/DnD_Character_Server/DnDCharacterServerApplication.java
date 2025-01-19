@@ -1,0 +1,15 @@
+package com.example.DnD_Character_Server;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+@SpringBootApplication
+public class DnDCharacterServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DnDCharacterServerApplication.class, args);
+		System.out.println("Server is running");
+	}
+
+}
