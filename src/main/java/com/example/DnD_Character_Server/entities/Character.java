@@ -27,17 +27,17 @@ public class Character {
     private int cp,sp,gp,pp;
     private List<String> savingThrows, languages;
     private List<Skill> skills, proficiencies;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     private Set<Feat> feats;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Item> items;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Spell> spells;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Weapon> weapons;
     @OneToOne
     private Armor activeArmor;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Feature> features;
 
 

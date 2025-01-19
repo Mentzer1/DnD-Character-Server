@@ -7,6 +7,7 @@ import com.example.DnD_Character_Server.exceptions.GeneralExcepion;
 import com.example.DnD_Character_Server.exceptions.RaceException;
 import com.example.DnD_Character_Server.repositories.CharacterClassRepository;
 import com.example.DnD_Character_Server.repositories.CharacterRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,7 +18,9 @@ import java.util.Set;
 public class CharacterService {
 
     private int characterID;
+    @Autowired
     private CharacterRepository characterRepository;
+    @Autowired
     private CharacterClassRepository characterClassRepository;
 
 
@@ -30,6 +33,12 @@ public class CharacterService {
     public Character getCharacterDetails(){
         return characterRepository.findById(characterID).orElseThrow();
     }
+
+    public Character getAnyCharacterDetails(int id){
+        return characterRepository.findById(id).orElseThrow();
+    }
+
+
 
     public void addClassToCharacter(CharacterClass characterClass) throws CharacterClassException {
         Character character = getCharacterDetails();
@@ -82,7 +91,7 @@ public class CharacterService {
     public void addBackgroundToCharacter(Background background) throws GeneralExcepion {
         Character character = getCharacterDetails();
         if (character.getBackgroundName() != null){
-            throw new GeneralExcepion("Character already has a race");
+            throw new GeneralExcepion("Character already has a background");
         }
 
         List<Skill> characterProfs = character.getProficiencies(); // make a list of character proficiencies
