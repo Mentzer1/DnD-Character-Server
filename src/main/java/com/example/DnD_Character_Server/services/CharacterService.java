@@ -30,8 +30,12 @@ public class CharacterService {
         characterRepository.save(character);
     }
 
-    public Character getCharacterDetails(){
+    public Character getOneCharacter(int characterID){
         return characterRepository.findById(characterID).orElseThrow();
+    }
+
+    public List<Character> getAllCharacters(){
+        return characterRepository.findAll();
     }
 
     public Character getAnyCharacterDetails(int id){
@@ -41,7 +45,7 @@ public class CharacterService {
 
 
     public void addClassToCharacter(CharacterClass characterClass) throws CharacterClassException {
-        Character character = getCharacterDetails();
+        Character character = getOneCharacter(characterID);
         if (character.getClassName() != null){
             throw new CharacterClassException("Character already has a class");
         }
@@ -69,7 +73,7 @@ public class CharacterService {
     }
 
     public void addRaceToCharacter(Race race) throws RaceException {
-        Character character = getCharacterDetails();
+        Character character = getOneCharacter(characterID);
         if (character.getRaceName() != null){
             throw new RaceException("Character already has a race");
         }
@@ -89,7 +93,7 @@ public class CharacterService {
     }
 
     public void addBackgroundToCharacter(Background background) throws GeneralExcepion {
-        Character character = getCharacterDetails();
+        Character character = getOneCharacter(characterID);
         if (character.getBackgroundName() != null){
             throw new GeneralExcepion("Character already has a background");
         }
@@ -112,8 +116,8 @@ public class CharacterService {
 
     }
 
-    public void addFeat(Feat feat) throws GeneralExcepion {
-        Character character = getCharacterDetails();
+    public void addFeatToCharacter(Feat feat) throws GeneralExcepion {
+        Character character = getOneCharacter(characterID);
         Set<Feat> feats = character.getFeats();
         if (feats.contains(feat)){
             throw new GeneralExcepion("Cant have more than 1 of the same feat!!!");
@@ -129,8 +133,8 @@ public class CharacterService {
         characterRepository.save(character);
     }
 
-    public void addSpell(Spell spell) throws GeneralExcepion {
-        Character character = getCharacterDetails();
+    public void addSpellToCharacter(Spell spell) throws GeneralExcepion {
+        Character character = getOneCharacter(characterID);
         Set<Spell> spells = character.getSpells();
         if (spells.contains(spell)){
             throw new GeneralExcepion("Cant have more than 1 of the same spell!!!");
